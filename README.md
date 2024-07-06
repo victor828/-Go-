@@ -1,5 +1,39 @@
 # Aprendiendo Go
 
+## Comandos
+
+### go build
+
+Se usa para la copilacon de un programa
+
+### go dock
+
+Imprima la documentacion de un paquete
+
+### go fmt
+
+Formatea los archivos de codigo fuente
+
+### go get
+
+descarga los paquetes y los installa
+
+### go list
+
+Muestra la lista de todos los paquets installados.
+
+### go run
+
+Copila el archivo go y ejecuta el ejecutable.
+
+### go test
+
+correo los test de los archivos que terminan en `_test.go`
+
+### go help
+
+para poder ver la lista de comandos que puede ejecutar go solo necesitas introducir en consola.
+
 ## Creacion de modulo
 
 Para la creacion de un modulo en `Go` usaremos el comando
@@ -14,7 +48,7 @@ go mod init hello
 
 Un paquete te ayuda a llevar funciones a otro lugar
 Uno de los casos es el `fmt` que se instala con `Go`.
-Una declarado el paquete vamos a introducile funcionamiento
+Una declarado el paquete vamos a introducile funcionamiento en este caso para `main`
 
 ```go
 func main(){
@@ -30,40 +64,24 @@ Para ejecutarlo usamos el comando `go run + nombre del paquete`.
 go run hello
 ```
 
-## lista de comando
-
-para poder ver la lista de comandos que puede ejecutar go solo necesitas introducir en consola.
-
-```
-go help
-```
-
 ## Tipos de datos de Go
 
 ### Integers
+
+Son numeros enteros
 
 - int8: -128 a 127
 - int16: -32768 a 32767
 - int32: -2147483648 a 2147483647
 - int64: -9223372036854775808 a 922337203685477580
-- uint8: 0 a 255
-- uint16: 0 a 65535
-- uint32: 0 a 4294967295
-- uint64: 0 a 18446744073709551615
-- rune: alias para int32
-- byte: alias para uint8
-- int: depende de la arquitectura del sistema
-- uint: depende de la arquitectura del sistema
 
 ### Floats
 
+Numeros decimales.
+
+- float: 1.5
 - float32: 1.4e-45 a 3.4e38
 - float64: 4.9e-324 a 1.8e308
-
-### Complex
-
-- complex64: float32 + float32i
-- complex128: float64 + float64i
 
 ### Boolean
 
