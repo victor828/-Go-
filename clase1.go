@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 func main(){
 	var a int = 10
 	var b, c int // Puedo crear las variables mas de una en un sitio
@@ -19,15 +22,17 @@ func main(){
 	fmt.Println("Pointers",x,y,ip)
 	ip = &x // ahora es un puntero a x => 0xc00000a0a8
 	y = *ip // y ahora es 1 
-	fmt.Println("Pointers 2",ip, y)
+	var z int = x
+	x = 2
+	fmt.Println("Pointers 2",ip, y,z)
 
 	var mySlece = []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 	for i, s := range mySlece {
 		println(`mi numero es`, s, "y su indice es", i)
 	}
-	// se puede omitir el un valor usando `_`
-	/*
-	for _, s := range mySlece {
-	*/
-}
+
+	nombre := "Victor"
+	fmt.Println(strings.Split(nombre, ""))
+	println(strings.HasSuffix(nombre, "r"))
+} 

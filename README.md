@@ -202,3 +202,157 @@ for i, fruta := range frutas {
 ```
 
 En este caso estamos imprimiendo el índice y el valor de cada elemento.
+
+# CodeWars
+
+## Convertidor de tallas
+
+### Description
+
+You have clothes international size as text (xs, s, xxl).
+Your goal is to return European number size as a number from that size .
+
+Notice that there is arbitrary amount of modifiers (x), excluding m size, and input can be any string.
+
+Linearity
+Base size for medium (m) is 38.
+(then, small (s) is 36, and large (l) is 40)
+
+The scale is linear; modifier x continues that by adding or subtracting 2 from resulting size.
+
+Invalid cases
+Function should handle wrong/invalid sizes.
+
+Valid input has any base size (s/m/l) and any amount of modifiers (x) before base size (like xxl).
+Notice that you cannot apply modifier for m size, consider that case as invalid!
+Anything else is disallowed and should be considered as invalid (None for Python, 0, false for Go, null for JavaScript).
+
+Invalid examples: xxx, sss, xm, other string
+
+Valid Examples
+xs: 34
+s: 36
+m: 38
+l: 40
+xl: 42
+
+### Resolucion
+
+```Go
+func SizeToNumber(size string) (int, bool) {
+  var rsize int
+  var vrdd bool
+  // Generamos un map con las tallas y su numero
+   talls := map[string]int{"s": 36, "m":38, "l":40}
+   //Verificamos si termina con m y comienza con x
+  if  strings.HasSuffix(size, "m" ) && strings.HasSuffix(size, "x") {
+		rsize = 0
+		vrdd = false
+
+  } else if strings.HasPrefix(size, "x") {
+   //Aqui verificaremos que size comience con x
+	if strings.HasSuffix(size,"s") {
+	//si el texto termina en s
+		var r = strings.Count(size, "x")
+	rsize = talls["s"] -  2*r
+	} else if strings.HasSuffix(size, "l") {
+	 //Si el tecto termina en l
+		var r = strings.Count(size, "x")
+		rsize = talls["l"] +  2*r
+	}
+  } else {
+	  switch size {
+	  //Aqui estan los casos normales
+		  case "s": {
+			  rsize = talls["s"]
+			  vrdd = true
+			}
+			case "m": {
+				rsize = talls["m"]
+				vrdd = true
+			}
+			case "l": {
+				rsize = talls["l"]
+				vrdd = true
+			}
+			default: {
+				rsize = 0
+				vrdd = false
+			}
+		}
+	}
+  return rsize, vrdd
+}
+```
+
+### Otra resulucion Vista
+
+```GO
+import (
+  "strings"
+)
+
+func SizeToNumber(size string) (int, bool) {
+    //Guarda el numero de x en el string
+  x_count := strings.Count(size, "x")
+
+  //Si el string esta vacio o la cantidad de x es menor al len de size -1
+  if size == "" || x_count < len(size)-1 {
+    return 0, false
+  }
+
+  //
+  switch size[len(size)-1] {
+    case 's': return 36 - x_count*2, true
+    case 'l': return 40 + x_count*2, true
+    case 'm': {
+      if x_count == 0 {
+        return 38, true
+      } else {
+        return 0, false
+      }
+    }
+    default: return 0, false
+  }
+}
+```
+
+```GO
+func SizeToNumber(size string) (int, bool) {
+	var count int
+	m := map[string]int{
+		"x":    2,
+		"xxxs": 30,
+		"xxs":  32,
+		"xs":   34,
+		"s":    36,
+		"m":    38,
+		"l":    40,
+		"xl":   42,
+		"xxl":  44,
+		"xxxl": 46,
+	}
+	_, found := m[size]
+	if found {
+		return m[size], true
+	}
+	slc := strings.Split(size, "")
+	uniqWords := []string{}
+	uniq := map[string]bool{}
+	for _, v := range slc {
+		uniq[v] = true
+	}
+	for k, _ := range uniq {
+		uniqWords = append(uniqWords, k)
+	}
+	if len(slc) > 1 && (slc[0] == "s" || slc[0] == "m" || slc[0] == "l") {
+
+		return 0, false
+	}
+	if len(uniqWords) > 2 || (len(uniqWords) >= 2 && strings.Contains(size, "m")) {
+		return 0, false
+	} else {
+		if strings.Contains(size, "s") {
+			m["x"] = -2
+
+```
