@@ -373,3 +373,18 @@ func EvenOrOdd(number int) string {
   return "Odd"
 }
 ```
+
+## Clock
+
+### Description
+
+Clock shows h hours, m minutes and s seconds after midnight.
+Your task is to write a function which returns the time since midnight in milliseconds.
+
+### Operation
+
+```GO
+func Past(h, m, s int) int {
+	return (h*3600 + m*60 + s)*1000
+}
+```
