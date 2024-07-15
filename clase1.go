@@ -35,4 +35,24 @@ func main(){
 	nombre := "Victor"
 	fmt.Println(strings.Split(nombre, ""))
 	println(strings.HasSuffix(nombre, "r"))
-} 
+	
+/*	string := "abc"
+	string += "dfg"
+	fmt.Println(string)
+	
+	for _, s := range strings.Split(string, "") {
+		fmt.Println(s)
+	}
+*/
+
+
+	println(EvenOrOdd(50))
+
+}
+
+func EvenOrOdd(number int) string {
+	if number % 2 == 0 {
+		return "Even"
+	} 
+  return "Odd"
+}
